@@ -1,8 +1,12 @@
 package tp3;
 
+import mpi.*;
+
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        MPI.Init(args);
+
+        MPI.Finalize();
     }
 }
