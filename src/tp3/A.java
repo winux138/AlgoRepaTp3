@@ -8,6 +8,7 @@ public class A {
         while (true) {
             signalBuffer[0] = new Signal();
             MPI.COMM_WORLD.Ssend(signalBuffer, 0, 1, MPI.OBJECT, 1, Signal.TAG);
+            System.out.println("[A]\tmessage envoyé");
         }
     }
 }
