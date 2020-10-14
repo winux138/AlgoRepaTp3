@@ -12,10 +12,10 @@ public class Main {
 
         switch (rank){
             case 0:
-                A.main();
-                break;
-            case 1:
                 B.main();
+                break;
+            default:
+                A.main();
                 break;
         }
 

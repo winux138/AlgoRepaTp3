@@ -4,13 +4,19 @@ import mpi.*;
 
 public class B {
     public static void main() throws InterruptedException {
-        Ping[] ping = new Ping[1];
-        Pong[] pong = new Pong[1];
+
+        int somme = 0;
+        Signal[] signal = new Signal[1];
+
         while (true) {
-            MPI.COMM_WORLD.Recv(ping, 0, 1, MPI.OBJECT, 0, Ping.TAG);
-            Thread.sleep(3000);
-            pong[0] = new Pong(ping[0].getN() + 1);
-            MPI.COMM_WORLD.Ssend(pong, 0, 1, MPI.OBJECT, 0, Pong.TAG);
+            // reception du message
+            Status status = MPI.COMM_WORLD.Recv(signal, 0, 1, MPI.OBJECT, MPI.ANY_SOURCE, Signal.TAG);
+
+            // traitement du message
+            somme += signal[0].getN();
+            System.out.println("signal(" + signal[0].getN() + ")\trecu de A[" + status.source + "]");
+            System.out.println("somme = " + somme);
+            //Thread.sleep(1000);
         }
     }
 }
